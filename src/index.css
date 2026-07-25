@@ -1,0 +1,332 @@
+@import "tailwindcss";
+
+/* generated from design.md — do not hand-edit */
+
+/* 1. STATIC tokens → become Tailwind utilities (fonts, accent colors, radius, shadows). */
+@theme {
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-amber: #fbbf24;
+  --color-violet: #a78bfa;
+
+  --radius-card: 0.875rem;
+  --radius-btn: 0.625rem;
+  --radius-icon: 0.75rem;
+  --radius-chip: 0.375rem;
+  --radius-pill: 9999px;
+
+  --shadow-cyan: 0 4px 14px rgba(34, 211, 238, 0.22);
+  --shadow-cyan-hover: 0 8px 24px rgba(34, 211, 238, 0.32);
+}
+
+/* 2. SEMANTIC aliases → map utility names to runtime vars (themeable at use-site). */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-foreground-strong: var(--foreground-strong);
+  --color-foreground-body: var(--foreground-body);
+  --color-foreground-muted: var(--foreground-muted);
+
+  --color-card: var(--card);
+  --color-card-raised: var(--card-raised);
+  --color-card-foreground: var(--foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-tint: var(--primary-tint);
+
+  --color-amber-tint: var(--amber-tint);
+  --color-violet-tint: var(--violet-tint);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--background);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* shadcn-required aliases — mapped onto our semantic surfaces, not a second palette */
+  --color-muted: var(--card-raised);
+  --color-muted-foreground: var(--foreground-muted);
+  --color-secondary: var(--card-raised);
+  --color-secondary-foreground: var(--foreground);
+  --color-accent: var(--card-raised);
+  --color-accent-foreground: var(--foreground);
+  --color-popover: var(--card);
+  --color-popover-foreground: var(--foreground);
+}
+
+/* 3. VALUES — dark is default (:root), light overrides via [data-theme="light"],
+      OS preference respected when no explicit choice has been made. */
+:root {
+  --background: #0a0e14;
+  --foreground: #eef4f9;
+  --foreground-strong: #f8fbfd;
+  --foreground-body: #b8c4cf;
+  --foreground-muted: #7c8894;
+
+  --card: #12181f;
+  --card-raised: #1a2129;
+
+  --primary: #22d3ee;
+  --primary-foreground: #0a0e14;
+  --primary-tint: rgba(34, 211, 238, 0.1);
+
+  --amber-tint: rgba(251, 191, 36, 0.1);
+  --violet-tint: rgba(167, 139, 250, 0.1);
+
+  --destructive: #f87171;
+  --border: #263140;
+  --input: #263140;
+  --ring: #67e8f9;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 150ms;
+  --dur-base: 260ms;
+  --dur-slow: 480ms;
+  --dur-stagger: 60ms;
+}
+
+:root[data-theme='light'] {
+  --background: #f4f7fa;
+  --foreground: #0d1420;
+  --foreground-strong: #060a10;
+  --foreground-body: #414c59;
+  --foreground-muted: #5f6a78;
+
+  --card: #ffffff;
+  --card-raised: #eef2f6;
+
+  --primary: #0e7490;
+  --primary-foreground: #ffffff;
+  --primary-tint: rgba(14, 116, 144, 0.08);
+
+  --amber-tint: rgba(180, 83, 9, 0.08);
+  --violet-tint: rgba(124, 58, 237, 0.08);
+
+  --destructive: #dc2626;
+  --border: #d7dee6;
+  --input: #d7dee6;
+  --ring: #0891b2;
+}
+
+/* light-theme accent overrides for utilities defined in the STATIC @theme block above */
+:root[data-theme='light'] {
+  --color-amber: #b45309;
+  --color-violet: #7c3aed;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    --background: #f4f7fa;
+    --foreground: #0d1420;
+    --foreground-strong: #060a10;
+    --foreground-body: #414c59;
+    --foreground-muted: #5f6a78;
+    --card: #ffffff;
+    --card-raised: #eef2f6;
+    --primary: #0e7490;
+    --primary-foreground: #ffffff;
+    --primary-tint: rgba(14, 116, 144, 0.08);
+    --amber-tint: rgba(180, 83, 9, 0.08);
+    --violet-tint: rgba(124, 58, 237, 0.08);
+    --destructive: #dc2626;
+    --border: #d7dee6;
+    --input: #d7dee6;
+    --ring: #0891b2;
+    --color-amber: #b45309;
+    --color-violet: #7c3aed;
+  }
+}
+
+/* 4. Base styles, motion layer, and a11y guard. */
+* {
+  border-color: var(--color-border);
+  outline-color: var(--color-ring);
+}
+
+html {
+  color-scheme: dark;
+}
+html[data-theme='light'] {
+  color-scheme: light;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  color: var(--color-foreground-body);
+  font-feature-settings: 'tnum' 1;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  color: var(--color-foreground-strong);
+}
+
+.font-tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-foreground-muted);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+/* motion layer — rich */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cellReveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes badgePop {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmerSweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes ringGlow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 2px color-mix(in srgb, var(--ring-glow, #22d3ee) 25%, transparent));
+  }
+  50% {
+    filter: drop-shadow(0 0 9px color-mix(in srgb, var(--ring-glow, #22d3ee) 70%, transparent));
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity var(--dur-slow) var(--ease-out-expo),
+    transform var(--dur-slow) var(--ease-out-expo);
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-fade-slide-up {
+  animation: fadeSlideUp var(--dur-slow) var(--ease-out-expo) both;
+}
+.animate-cell-reveal {
+  animation: cellReveal var(--dur-base) var(--ease-out-expo) both;
+}
+.animate-badge-pop {
+  animation: badgePop var(--dur-base) var(--ease-out-expo) both;
+}
+.animate-ring-glow {
+  animation: ringGlow 2.4s ease-in-out infinite;
+}
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-card-raised) 25%,
+    color-mix(in srgb, var(--color-card-raised) 60%, var(--color-foreground-muted)) 50%,
+    var(--color-card-raised) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmerSweep 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-ring-glow {
+    animation: none;
+    filter: drop-shadow(0 0 4px color-mix(in srgb, var(--ring-glow, #22d3ee) 45%, transparent));
+  }
+}
+
+/* app-layer console utilities — added by the design-elevation pass (dashboard only) */
+@keyframes pulseDot {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary) 45%, transparent);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 8px transparent;
+  }
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border-radius: 9999px;
+  background: var(--primary);
+  animation: pulseDot 2.2s var(--ease-out-expo) infinite;
+}
+
+/* faint radar graticule, fades out toward the content side; both themes via foreground-muted mix */
+.console-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--foreground-muted) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--foreground-muted) 8%, transparent) 1px, transparent 1px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(120% 110% at 100% 0%, black 30%, transparent 75%);
+  mask-image: radial-gradient(120% 110% at 100% 0%, black 30%, transparent 75%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-dot {
+    animation: none;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 25%, transparent);
+  }
+}
