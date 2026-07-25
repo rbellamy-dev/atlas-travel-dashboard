@@ -41,10 +41,7 @@ export const BudgetRing = React.forwardRef<HTMLDivElement, BudgetRingProps>(
         className={cn('flex flex-col items-center gap-3 rounded-card border border-border bg-card-raised p-5', className)}
         {...props}
       >
-        <div
-          className="relative animate-ring-glow"
-          style={{ width: size, height: size, ['--ring-glow' as string]: glow }}
-        >
+        <div className="relative" style={{ width: size, height: size }}>
           <svg
             viewBox="0 0 100 100"
             width={size}
@@ -63,6 +60,24 @@ export const BudgetRing = React.forwardRef<HTMLDivElement, BudgetRingProps>(
               strokeWidth="7"
               className="stroke-border"
             />
+            {/* Pre-blurred halo arc — pulses via opacity only (see .ring-glow-arc) */}
+            <g className="ring-glow-arc">
+              <circle
+                cx="50"
+                cy="50"
+                r={RADIUS}
+                fill="none"
+                strokeWidth="7"
+                strokeLinecap="round"
+                strokeDasharray={CIRCUMFERENCE}
+                strokeDashoffset={offset}
+                transform="rotate(-90 50 50)"
+                style={{
+                  stroke: glow,
+                  transition: `stroke-dashoffset var(--dur-slow) var(--ease-out-expo)`,
+                }}
+              />
+            </g>
             <circle
               cx="50"
               cy="50"

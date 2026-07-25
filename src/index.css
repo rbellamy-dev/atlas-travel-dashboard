@@ -65,7 +65,7 @@
   --foreground: #eef4f9;
   --foreground-strong: #f8fbfd;
   --foreground-body: #b8c4cf;
-  --foreground-muted: #7c8894;
+  --foreground-muted: #828e9a; /* clears WCAG AA (4.5:1) on card AND card-raised */
 
   --card: #12181f;
   --card-raised: #1a2129;
@@ -114,7 +114,7 @@
 
 /* light-theme accent overrides for utilities defined in the STATIC @theme block above */
 :root[data-theme='light'] {
-  --color-amber: #b45309;
+  --color-amber: #a94d08; /* darkened: clears WCAG AA (4.5:1) as badge text on amber-tint */
   --color-violet: #7c3aed;
 }
 
@@ -136,7 +136,7 @@
     --border: #d7dee6;
     --input: #d7dee6;
     --ring: #0891b2;
-    --color-amber: #b45309;
+    --color-amber: #a94d08; /* darkened: clears WCAG AA (4.5:1) as badge text on amber-tint */
     --color-violet: #7c3aed;
   }
 }
@@ -230,16 +230,6 @@ h4 {
   }
 }
 
-@keyframes ringGlow {
-  0%,
-  100% {
-    filter: drop-shadow(0 0 2px color-mix(in srgb, var(--ring-glow, #22d3ee) 25%, transparent));
-  }
-  50% {
-    filter: drop-shadow(0 0 9px color-mix(in srgb, var(--ring-glow, #22d3ee) 70%, transparent));
-  }
-}
-
 .reveal {
   opacity: 0;
   transform: translateY(16px);
@@ -261,8 +251,24 @@ h4 {
 .animate-badge-pop {
   animation: badgePop var(--dur-base) var(--ease-out-expo) both;
 }
-.animate-ring-glow {
-  animation: ringGlow 2.4s ease-in-out infinite;
+/* Compositor-friendly ring halo: a pre-blurred duplicate arc whose OPACITY pulses.
+   Replaces the old drop-shadow keyframe (which re-rendered a growing blur every
+   frame). The blur is now constant → the filter surface is cached and only the
+   opacity composites. Same glow, a fraction of the per-frame paint cost. */
+@keyframes glowPulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+.ring-glow-arc {
+  filter: blur(3px);
+  transform: translateZ(0);
+  will-change: opacity;
+  animation: glowPulse 2.4s ease-in-out infinite;
 }
 .skeleton-shimmer {
   background: linear-gradient(
@@ -284,10 +290,20 @@ h4 {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  .animate-ring-glow {
+  .ring-glow-arc {
     animation: none;
-    filter: drop-shadow(0 0 4px color-mix(in srgb, var(--ring-glow, #22d3ee) 45%, transparent));
+    opacity: 0.6;
   }
+}
+
+/* Hide the scrollbar on the horizontally scrollable mobile filter rail while
+   keeping it swipeable — the rail is the fallback for tabs that overflow < sm. */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 /* app-layer console utilities — added by the design-elevation pass (dashboard only) */

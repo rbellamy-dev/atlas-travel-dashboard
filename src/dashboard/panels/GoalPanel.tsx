@@ -29,7 +29,7 @@ export function GoalPanel() {
             <Plane className="size-4 text-primary" aria-hidden="true" />
           </span>
           <div className="min-w-0">
-            <p className="truncate font-display text-[15px] font-semibold text-foreground-strong">
+            <p className="truncate font-mono text-[15px] font-semibold text-foreground-strong">
               {nextDeparture.destination}
             </p>
             <p className="font-tabular truncate font-mono text-[11px] text-foreground-muted">

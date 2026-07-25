@@ -9,7 +9,7 @@ Reference direction: **modern flight-ops dark** — near-black canvas, map/conso
 | foreground         | #eef4f9  | primary text |
 | foreground-strong  | #f8fbfd  | headings / hero numerals |
 | foreground-body    | #b8c4cf  | body text |
-| foreground-muted   | #7c8894  | captions/labels |
+| foreground-muted   | #828e9a  | captions/labels (AA on card & card-raised) |
 | card               | #12181f  | card surface |
 | card-raised        | #1a2129  | raised surface (KPI tiles, icon chips) |
 | border / input     | #263140  | hairlines (decorative, not a WCAG-3:1 boundary) |
@@ -40,10 +40,10 @@ Reference direction: **modern flight-ops dark** — near-black canvas, map/conso
 | Role       | Token  | Dark value | Light value | Tint (dark / light)              | Pairs with |
 |------------|--------|-----------|-------------|-----------------------------------|------------|
 | primary    | cyan   | #22d3ee   | #0e7490     | rgba(34,211,238,.10) / rgba(14,116,144,.08) | Plane icon, "in-transit" |
-| alert      | amber  | #fbbf24   | #b45309     | rgba(251,191,36,.10) / rgba(180,83,9,.08)   | AlertTriangle icon, "delayed" |
+| alert      | amber  | #fbbf24   | #a94d08     | rgba(251,191,36,.10) / rgba(180,83,9,.08)   | AlertTriangle icon, "delayed" |
 | upcoming   | violet | #a78bfa   | #7c3aed     | rgba(167,139,250,.10) / rgba(124,58,237,.08) | CalendarClock icon, "upcoming" |
 
-Contrast-gated: amber/violet/cyan text on `card` (dark #12181f) all clear ≥6.5:1; primary on `card`/`background` clears ≥9:1 in both themes; `foreground-muted` clears ≥5:1 on `background`/`card` in both themes; `primary-foreground` on `primary` clears ≥5:1 in both themes. Hairline `border` is intentionally low-contrast (decorative divider, not an essential-only boundary) — matches the convention in the reference token system.
+Contrast-gated: amber/violet/cyan text on `card` (dark #12181f) all clear ≥6.5:1; primary on `card`/`background` clears ≥9:1 in both themes; `foreground-muted` clears WCAG AA (≥4.5:1) on `background`/`card`/`card-raised` in both themes (the eyebrow labels on the raised MetricCard surface are the tightest case, ≥4.8:1); `primary-foreground` on `primary` clears ≥5:1 in both themes. Hairline `border` is intentionally low-contrast (decorative divider, not an essential-only boundary) — matches the convention in the reference token system.
 
 ## Typography
 - **Display**: `Space Grotesk` (600/500) — headings, hero KPI numerals. Geometric, technical, reads like an instrument readout at large sizes.
@@ -73,5 +73,5 @@ Shadows:
 ## Motion layer — rich
 - Easings: `--ease-out-expo: cubic-bezier(.16,1,.3,1)` — the only easing in the system; every entrance/reveal settles without overshoot, no bounce/elastic curves.
 - Durations: `--dur-fast: 150ms`, `--dur-base: 260ms`, `--dur-slow: 480ms`, `--dur-stagger: 60ms` (per-item entrance delay step).
-- Keyframes: `fadeSlideUp` (panel/card entrance, 16px → 0), `ringGlow` (accent-driven `drop-shadow` pulse via `--ring-glow`), `shimmerSweep` (skeleton loading), `cellReveal` (trip-card list stagger), `countUp` (rAF numeral easing, not a CSS keyframe but part of the motion contract), `badgePop` (status badge scale-in on mount, spring easing).
-- `prefers-reduced-motion: reduce` guard is mandatory — disables `fadeSlideUp`/`cellReveal`/`badgePop` translate+scale (keep opacity only) and stops `ringGlow` pulsing (static glow instead).
+- Keyframes: `fadeSlideUp` (panel/card entrance, 16px → 0), `glowPulse` (accent-driven opacity pulse on a pre-blurred halo arc behind the budget ring — compositor-only; replaces an earlier per-frame `drop-shadow` filter for smoother always-on motion), `shimmerSweep` (skeleton loading), `cellReveal` (trip-card list stagger), `countUp` (rAF numeral easing, not a CSS keyframe but part of the motion contract; short-circuits to the final value under reduced motion), `badgePop` (status badge scale-in on mount, spring easing).
+- `prefers-reduced-motion: reduce` guard is mandatory — disables `fadeSlideUp`/`cellReveal`/`badgePop` translate+scale (keep opacity only), stops `glowPulse` pulsing (static halo at 0.6 opacity), and skips the `countUp` rAF loop (numerals render at their final value).

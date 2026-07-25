@@ -104,7 +104,7 @@ export const TripCard = React.forwardRef<HTMLDivElement, TripCardProps>(
             <MapPin aria-hidden="true" />
           </IconContainer>
           <div className="min-w-0 flex-1">
-            <p className="truncate font-display text-[15px] font-semibold text-foreground-strong">
+            <p className="truncate font-mono text-[15px] font-semibold text-foreground-strong">
               {destination}
             </p>
             <p className="truncate text-xs text-foreground-muted">{country}</p>

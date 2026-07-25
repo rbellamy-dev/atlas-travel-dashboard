@@ -10,11 +10,29 @@ const accentText: Record<Accent, string> = {
   violet: 'text-violet',
 }
 
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = React.useState(false)
+  React.useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const update = () => setReduced(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
+  return reduced
+}
+
 function useCountUp(target: number, durationMs = 900) {
+  const reduced = usePrefersReducedMotion()
   const [value, setValue] = React.useState(0)
   const startRef = React.useRef<number | null>(null)
 
   React.useEffect(() => {
+    // Reduced motion: skip the per-frame rAF loop (and its re-renders) entirely.
+    if (reduced) {
+      setValue(target)
+      return
+    }
     let raf: number
     startRef.current = null
     const step = (t: number) => {
@@ -27,7 +45,7 @@ function useCountUp(target: number, durationMs = 900) {
     }
     raf = requestAnimationFrame(step)
     return () => cancelAnimationFrame(raf)
-  }, [target, durationMs])
+  }, [target, durationMs, reduced])
 
   return value
 }
@@ -94,6 +112,7 @@ export const MetricCard = React.forwardRef<HTMLDivElement, MetricCardProps>(
           </p>
           {trend && (
             <span
+              role="img"
               className={cn('flex items-center gap-0.5 pb-1 text-xs font-medium', trendColor)}
               aria-label={trendLabel ? `trend ${trend}: ${trendLabel}` : `trend ${trend}`}
             >
