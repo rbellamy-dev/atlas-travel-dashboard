@@ -9,6 +9,8 @@ Atlas is a travel-analytics dashboard: it surfaces trip status, spend, and trave
 
 ## Dashboard
 Standard level — KPI row + main trip feed + a goal/progress panel, scaled up slightly with a status-filter rail:
+- **Top bar** — logo and theme toggle.
+- **Ops board** — hero readout: next departure with a progress bar, plus delayed/upcoming callouts.
 - **Stat row** — 4 KPI tiles: Active Trips, YTD Spend, Miles Traveled, Avg Trip Length.
 - **Trip feed** — list of `TripCard`s (destination, dates, status, budget-used bar), filterable by status via `Tabs` (All / Upcoming / In-Transit / Delayed / Completed) and a search `Input`.
 - **Goal panel (side rail)** — `BudgetRing` showing annual travel-budget usage as a circular progress ring, plus a compact "next departure" callout.
@@ -21,13 +23,15 @@ Standard level — KPI row + main trip feed + a goal/progress panel, scaled up s
 | Component | Backed by | Accent usage |
 |---|---|---|
 | `IconContainer` | — | owns the shared `Accent` union: `cyan` (primary) \| `amber` \| `violet` |
-| `MetricCard` | card | numeral tinted by accent role, trend arrow |
-| `TripCard` | card, badge, progress | status badge + budget bar (`upcoming`→violet, `in-transit`→cyan, `delayed`→amber, `completed`→muted) |
-| `BudgetRing` | — | SVG progress ring, accent-driven glow (`cyan` default) |
-| `EmptyState` | — | shared across all empty collections |
+| `MetricCard` | skeleton | numeral tinted by accent role, trend arrow |
+| `TripCard` | badge, progress, skeleton | status badge + budget bar (`upcoming`→violet, `in-transit`→cyan, `delayed`→amber, `completed`→muted) |
+| `BudgetRing` | skeleton | SVG progress ring, accent-driven glow (`cyan` default) |
+| `EmptyState` | button | shared across all empty collections |
 | `PanelError` | button | shared inline error + retry |
 
-Every data-driven component (`MetricCard`, `TripCard`, `BudgetRing`) ships Default/Loading/Empty/Error states and stories.
+**States.** Components own Default + Loading; panels own Empty + Error via `EmptyState` / `PanelError`.
+
+**Stories.** One per component — `Travel/` and `UI/`, plus `Foundation/Design Tokens` and `Recipes/`.
 
 ## Data model
 See `design.md` for tokens; entities live in `src/dashboard/types.ts`:
@@ -36,6 +40,3 @@ See `design.md` for tokens; entities live in `src/dashboard/types.ts`:
 - `TravelGoal` — id, title, current, target, unit?, accent?
 
 Mock data: 6 trips spanning all four statuses (e.g. Lisbon, Tokyo, Vancouver, Nairobi, Reykjavík, Singapore) with realistic dates, flight codes, and budgets; one annual `TravelGoal` (e.g. "2026 travel budget" or "countries visited").
-
-## Deploy
-Skip — build and verify locally only (`vite build` → `dist/`, `storybook build` → `storybook-static/`). No Vercel projects for this pass.
