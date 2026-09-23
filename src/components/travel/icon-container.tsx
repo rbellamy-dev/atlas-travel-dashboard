@@ -7,8 +7,8 @@ export type Accent = 'cyan' | 'amber' | 'violet'
 // (each of these is redefined under :root[data-theme='light'] in index.css).
 export const accentVar: Record<Accent, string> = {
   cyan: 'var(--primary)',
-  amber: 'var(--color-amber)',
-  violet: 'var(--color-violet)',
+  amber: 'var(--amber)',
+  violet: 'var(--violet)',
 }
 
 const containerVariants: Record<Accent, string> = {
