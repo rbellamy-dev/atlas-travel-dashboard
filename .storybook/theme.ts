@@ -1,7 +1,7 @@
 import { create } from '@storybook/theming'
 import { colors } from '../src/tokens'
 
-// generated from design.md — same palette as the app, never hand-synced separately
+// colors come from src/tokens.ts, generated from src/tokens.json — the same values the app renders
 
 export const brandTheme = create({
   base: 'dark',
