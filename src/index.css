@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-/* .claude/ holds the generator spec, not app source — its code samples would
-   otherwise be scanned and emit utilities nothing here uses. */
-@source not "../.claude";
-
 /* generated from design.md — do not hand-edit */
 
 /* 1. STATIC tokens → become Tailwind utilities (fonts, accent colors, radius, shadows). */
