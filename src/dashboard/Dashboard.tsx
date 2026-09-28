@@ -59,7 +59,7 @@ export function Dashboard() {
           <ClockReadout />
         </header>
 
-        <div className="mb-8 grid gap-4 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
+        <div className="mb-8 grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
           <div className="animate-fade-slide-up" style={{ animationDelay: '60ms' }}>
             <PanelBoundary name="Operations">
               <OpsBoard />
@@ -72,7 +72,7 @@ export function Dashboard() {
           </div>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-6">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-6">
           <div className="animate-fade-slide-up" style={{ animationDelay: '220ms' }}>
             <PanelBoundary name="Trips">
               <TripFeed />

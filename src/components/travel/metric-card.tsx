@@ -100,7 +100,7 @@ export const MetricCard = React.forwardRef<HTMLDivElement, MetricCardProps>(
         {...props}
       >
         <p className="eyebrow mb-1.5 truncate">{label}</p>
-        <div className="flex items-end justify-between gap-2">
+        <div className="flex flex-wrap items-end justify-between gap-x-2">
           <p
             className={cn(
               'font-tabular font-mono text-[26px] font-semibold tracking-[-0.02em]',
