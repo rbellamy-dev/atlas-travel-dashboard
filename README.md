@@ -6,7 +6,7 @@ A travel-operations dashboard built entirely from its own token-driven component
 
 One repo, one set of tokens, two outputs: the component library (documented in Storybook) and the dashboard that consumes it.
 
-`product.md` is the brief and `design.md` is the design spec with the reasoning behind each value. Both were created before any code. Token values live in one file, `src/tokens.json`; `npm run tokens` generates `src/tokens.css` (for the app and Storybook) and `src/tokens.ts` (for Storybook's own UI theme and the Design Tokens page) from it. `dev`, `build`, `storybook` and `build-storybook` all regenerate on start. If you edit `tokens.json` while a dev server is running, run `npm run tokens` to pick up the change.
+`product.md` is the brief and `design.md` is the design spec with the reasoning behind each value. Token values live in one file, `src/tokens.json`; `npm run tokens` generates `src/tokens.css` (for the app and Storybook) and `src/tokens.ts` (for Storybook's own UI theme and the Design Tokens page) from it. `dev`, `build`, `storybook` and `build-storybook` all regenerate on start. If you edit `tokens.json` while a dev server is running, run `npm run tokens` to pick up the change.
 
 ## Run it
 
