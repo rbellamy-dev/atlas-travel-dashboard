@@ -14,7 +14,7 @@ type Story = StoryObj
 const kebab = (s: string) => s.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
 
 const hueNotes: Record<string, string> = {
-  ink: 'cool blue-grey — dark surfaces through light text (white sits here too)',
+  ink: 'cool blue-grey, from dark surfaces to light text. White sits here too.',
   cyan: 'brand',
   amber: 'warnings and delayed trips',
   violet: 'upcoming trips and secondary data',
@@ -70,7 +70,7 @@ export const Primitives: Story = {
       <PageHeader
         eyebrow="Foundation · Layer 1"
         title="Primitives"
-        description="Raw values, named by what they are. They're the same in both themes, and components never use them directly — semantic tokens point at them."
+        description="Raw values, named by what they are. They're the same in both themes. Components never use them directly. Semantic tokens point at them instead."
       />
 
       <p className="-mt-4 mb-10 text-body-sm text-foreground-muted">
@@ -97,7 +97,7 @@ export const Primitives: Story = {
         description={
           <>
             Atlas uses Tailwind&apos;s default 4px scale, so spacing isn&apos;t emitted as CSS variables. These are the
-            steps in use — <Code>sp4</Code> is <Code>p-4</Code>.
+            steps in use. For example, <Code>sp4</Code> is <Code>p-4</Code>.
           </>
         }
       >

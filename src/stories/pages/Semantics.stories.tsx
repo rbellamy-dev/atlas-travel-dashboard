@@ -18,7 +18,7 @@ const colorGroups: { title: string; description: string; keys: string[] }[] = [
   { title: 'Surfaces', description: 'page, cards and the lines between them', keys: ['background', 'card', 'cardRaised', 'border', 'input'] },
   { title: 'Text', description: 'strongest to quietest', keys: ['foregroundStrong', 'foreground', 'foregroundBody', 'foregroundMuted'] },
   { title: 'Brand', description: 'primary actions, focus and highlights', keys: ['primary', 'primaryForeground', 'primaryTint', 'ring'] },
-  { title: 'Status', description: 'trip states and errors — each with a tint for badges', keys: ['amber', 'amberTint', 'violet', 'violetTint', 'destructive'] },
+  { title: 'Status', description: 'trip states and errors, each with a tint for badges', keys: ['amber', 'amberTint', 'violet', 'violetTint', 'destructive'] },
 ]
 {
   const listed = colorGroups.flatMap((g) => g.keys)
@@ -60,7 +60,7 @@ export const Semantics: Story = {
       <PageHeader
         eyebrow="Foundation · Layer 2"
         title="Semantics"
-        description="Values named by their job, not their value. Components use these — through Tailwind utilities like bg-card and rounded-card — so a theme or palette change never touches component code."
+        description="Values named by their job, not their value. Components use them through Tailwind utilities like bg-card and rounded-card, so a theme or palette change never touches component code."
       />
 
       <Section title="How a name travels" description="Each colour is a CSS variable, a Tailwind utility, and a pointer to a primitive.">
@@ -98,7 +98,7 @@ export const Semantics: Story = {
 
       <Section
         title="shadcn aliases"
-        description="Extra colour names shadcn/ui components expect. They map onto the roles above — not a second palette."
+        description="Extra colour names that shadcn/ui components expect. They map onto the roles above and aren't a second palette."
       >
         <div className="grid gap-2 sm:grid-cols-2">
           {Object.entries(colorAliases).map(([alias, target]) => (
@@ -143,7 +143,7 @@ export const Semantics: Story = {
                     fontWeight: `var(--text-${name}--font-weight)`,
                   }}
                 >
-                  Flight AT 204 — Gate B12
+                  Flight AT 204, Gate B12
                 </p>
               </div>
             )
@@ -182,8 +182,8 @@ export const Semantics: Story = {
       </Section>
 
       <Note title="Rule of thumb">
-        Components use names from this page — <Code>bg-card</Code>, <Code>text-foreground-muted</Code>,{' '}
-        <Code>rounded-card</Code> — never <Code>--cyan-400</Code> or a hex value. If a component needs something that
+        Components use names from this page, like <Code>bg-card</Code>, <Code>text-foreground-muted</Code> and{' '}
+        <Code>rounded-card</Code>. They never use <Code>--cyan-400</Code> or a hex value. If a component needs something that
         isn&apos;t here, add a role in <Code>tokens.json</Code> first.
       </Note>
     </DocPage>
