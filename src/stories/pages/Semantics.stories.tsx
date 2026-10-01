@@ -63,7 +63,7 @@ export const Semantics: Story = {
         description="Values named by their job, not their value. Components use them through Tailwind utilities like bg-card and rounded-card, so a theme or palette change never touches component code."
       />
 
-      <Section title="How a name travels" description="Each colour is a CSS variable, a Tailwind utility, and a pointer to a primitive.">
+      <Section title="How a name travels" description="A colour starts as a primitive, gets a semantic name that says what it's for, and becomes Tailwind classes that components use.">
         <div className="flex flex-wrap items-center gap-2 font-mono text-body-sm">
           <span className="rounded-chip border border-border bg-card px-2.5 py-1.5 text-foreground-muted">--cyan-400</span>
           <span className="text-foreground-muted">→</span>
