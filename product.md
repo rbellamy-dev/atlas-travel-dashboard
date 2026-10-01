@@ -31,7 +31,7 @@ Standard level — KPI row + main trip feed + a goal/progress panel, scaled up s
 
 **States.** Components own Default + Loading; panels own Empty + Error via `EmptyState` / `PanelError`.
 
-**Stories.** One per component, grouped under `Components/UI`, `Components/Travel` and `Components/Recipes`, with a `Components/Overview` index. `Foundation/` holds the token pages: Overview, Primitives, Semantics and Design Tokens.
+**Stories.** One per component, grouped under `Components/UI`, `Components/Travel` and `Components/Recipes`, with a `Components/Overview` index. `Foundation/` holds the token pages: Overview, Primitives and Semantics.
 
 ## Data model
 See `design.md` for tokens; entities live in `src/dashboard/types.ts`:

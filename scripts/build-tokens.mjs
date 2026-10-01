@@ -12,7 +12,7 @@
  *   src/primitives.css — palette + motion, plain :root vars
  *   src/semantics.css  — @theme roles + Tailwind color aliases + themed :root values
  *   src/tokens.ts   — the same values as JS, for Storybook's manager theme and the
- *                     Design Tokens story (the manager can't read CSS variables)
+ *                     Foundation pages (the manager can't read CSS variables)
  *
  *   node scripts/build-tokens.mjs            regenerate all three files
  *   node scripts/build-tokens.mjs --check    fail if any file is stale or hand-edited
@@ -113,7 +113,7 @@ for (const [role, t] of entries(typeScale)) {
 }
 
 // Spacing is documentation only: it has to stay on Tailwind's default 4px step,
-// or the Design Tokens story promises a size no utility can produce.
+// or the Primitives page promises a size no utility can produce.
 for (const [key, px] of entries(spacing)) {
   if (px % 4 !== 0) fail(`tokens.json: spacing.${key} = ${px} is not a multiple of 4 — Tailwind's default scale can't express it`)
 }

@@ -74,11 +74,10 @@ export const Overview: Story = {
       </Section>
 
       <Section title="Explore">
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className="grid gap-3 md:grid-cols-3">
           <LinkCard title="Primitives" description="Palette, spacing scale and motion" to="Foundation/Primitives" />
           <LinkCard title="Semantics" description="Colour roles per theme, type scale, radius, shadows" to="Foundation/Semantics" />
           <LinkCard title="Components" description="UI, Travel and Recipes — and how they use tokens" to="Components/Overview" />
-          <LinkCard title="Design Tokens" description="Every value on one page" to="Foundation/Design Tokens" />
         </div>
       </Section>
 
