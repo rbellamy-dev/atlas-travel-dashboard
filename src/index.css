@@ -1,10 +1,15 @@
 @import "tailwindcss";
-@import "./tokens.css";
+@import "./primitives.css";
+@import "./semantics.css";
 
-/* Base styles, motion layer, and a11y guard. Token values live in tokens.css (generated from tokens.json). */
-* {
-  border-color: var(--color-border);
-  outline-color: var(--color-ring);
+/* Base styles, motion layer, and a11y guard. Token values live in primitives.css + semantics.css (generated from tokens.json). */
+/* Default border/outline colour. In @layer base so Tailwind's border-* / outline-* utilities
+   (border-transparent, hover:border-primary/30, aria-invalid:border-destructive…) override it. */
+@layer base {
+  * {
+    border-color: var(--color-border);
+    outline-color: var(--color-ring);
+  }
 }
 
 html {

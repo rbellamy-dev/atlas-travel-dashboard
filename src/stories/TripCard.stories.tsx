@@ -5,7 +5,7 @@ import { PanelError } from '@/components/travel/panel-error'
 import { Plane } from 'lucide-react'
 
 const meta: Meta<typeof TripCard> = {
-  title: 'Travel/TripCard',
+  title: 'Components/Travel/TripCard',
   component: TripCard,
   tags: ['autodocs'],
   parameters: { layout: 'centered' },

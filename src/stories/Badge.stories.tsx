@@ -3,10 +3,19 @@ import { Badge } from '@/components/ui/badge'
 import { Plane, CalendarClock, AlertTriangle, CheckCircle2 } from 'lucide-react'
 
 const meta: Meta<typeof Badge> = {
-  title: 'UI/Badge',
+  title: 'Components/UI/Badge',
   component: Badge,
   tags: ['autodocs'],
   parameters: { layout: 'centered' },
+  // Badges always sit on a card in the app. Showing them on the page background instead
+  // would understate their contrast (light-mode tint text is AA on card, not on background).
+  decorators: [
+    (Story) => (
+      <div className="rounded-card border border-border bg-card p-6">
+        <Story />
+      </div>
+    ),
+  ],
 }
 export default meta
 type Story = StoryObj<typeof Badge>

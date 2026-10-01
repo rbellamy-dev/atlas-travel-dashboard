@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { PanelError } from '@/components/travel/panel-error'
 
 const meta: Meta<typeof PanelError> = {
-  title: 'Travel/PanelError',
+  title: 'Components/Travel/PanelError',
   component: PanelError,
   tags: ['autodocs'],
   parameters: { layout: 'centered' },

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { BudgetRing } from '@/components/travel/budget-ring'
 
 const meta: Meta<typeof BudgetRing> = {
-  title: 'Travel/BudgetRing',
+  title: 'Components/Travel/BudgetRing',
   component: BudgetRing,
   tags: ['autodocs'],
   parameters: { layout: 'centered' },

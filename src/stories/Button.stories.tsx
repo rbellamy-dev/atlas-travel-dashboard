@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Plane } from 'lucide-react'
 
 const meta: Meta<typeof Button> = {
-  title: 'UI/Button',
+  title: 'Components/UI/Button',
   component: Button,
   tags: ['autodocs'],
   parameters: { layout: 'centered' },

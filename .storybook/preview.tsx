@@ -9,7 +9,13 @@ const preview: Preview = {
     backgrounds: { disable: true },
     options: {
       storySort: {
-        order: ['Foundation', ['Design Tokens'], 'UI', 'Travel', 'Recipes', '*'],
+        order: [
+          'Foundation',
+          ['Overview', 'Primitives', 'Semantics', 'Design Tokens'],
+          'Components',
+          ['Overview', 'UI', 'Travel', 'Recipes'],
+          '*',
+        ],
       },
     },
     docs: {

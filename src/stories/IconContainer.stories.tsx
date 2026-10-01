@@ -3,7 +3,7 @@ import { IconContainer } from '@/components/travel/icon-container'
 import { Plane, AlertTriangle, CalendarClock } from 'lucide-react'
 
 const meta: Meta<typeof IconContainer> = {
-  title: 'Travel/IconContainer',
+  title: 'Components/Travel/IconContainer',
   component: IconContainer,
   tags: ['autodocs'],
   parameters: { layout: 'centered' },

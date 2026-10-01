@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
 export type Accent = 'cyan' | 'amber' | 'violet'
 
 // CSS var references, not literal hex — resolve live against the current theme
-// (each of these is redefined under :root[data-theme='light'] in index.css).
+// (each of these is redefined under :root[data-theme='light'] in semantics.css).
 export const accentVar: Record<Accent, string> = {
   cyan: 'var(--primary)',
   amber: 'var(--amber)',

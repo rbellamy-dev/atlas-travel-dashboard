@@ -3,7 +3,7 @@ import { MetricCard } from '@/components/travel/metric-card'
 import { mockMetrics } from '@/dashboard/data'
 
 const meta: Meta = {
-  title: 'Recipes/StatRow',
+  title: 'Components/Recipes/StatRow',
   parameters: { layout: 'padded' },
 }
 export default meta

@@ -3,7 +3,7 @@ import { EmptyState } from '@/components/travel/empty-state'
 import { Plane, Search, Wallet } from 'lucide-react'
 
 const meta: Meta<typeof EmptyState> = {
-  title: 'Travel/EmptyState',
+  title: 'Components/Travel/EmptyState',
   component: EmptyState,
   tags: ['autodocs'],
   parameters: { layout: 'centered' },

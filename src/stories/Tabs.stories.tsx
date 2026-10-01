@@ -3,7 +3,7 @@ import { within, userEvent, expect } from '@storybook/test'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 
 const meta: Meta<typeof Tabs> = {
-  title: 'UI/Tabs',
+  title: 'Components/UI/Tabs',
   component: Tabs,
   tags: ['autodocs'],
   parameters: { layout: 'centered' },

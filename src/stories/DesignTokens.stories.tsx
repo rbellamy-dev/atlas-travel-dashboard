@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { colors, fonts, radius, shadows, spacing, typeScale } from '@/tokens'
+import { colors, colorSources, fonts, palette, radius, shadows, spacing, typeScale } from '@/tokens'
 
 const meta: Meta = {
   title: 'Foundation/Design Tokens',
@@ -17,7 +17,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   )
 }
 
-function Swatch({ name, value }: { name: string; value: string }) {
+function Swatch({ name, value, source }: { name: string; value: string; source?: string }) {
   return (
     <div className="flex flex-col gap-2">
       <div
@@ -26,6 +26,7 @@ function Swatch({ name, value }: { name: string; value: string }) {
       />
       <div>
         <p className="font-mono text-[11px] text-foreground">{name}</p>
+        {source && <p className="font-mono text-[10px] text-primary">→ {source}</p>}
         <p className="font-mono text-[10px] text-foreground-muted">{value}</p>
       </div>
     </div>
@@ -43,10 +44,18 @@ export const AllTokens: Story = {
         Generated from design.md. Flight-ops dark, dual-theme (dark shown here).
       </p>
 
+      <Section title="Palette — primitives">
+        <div className="grid grid-cols-3 gap-4 sm:grid-cols-6 lg:grid-cols-9">
+          {Object.entries(palette).map(([name, value]) => (
+            <Swatch key={name} name={name} value={value} />
+          ))}
+        </div>
+      </Section>
+
       <Section title="Surfaces & Text — dark">
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-6">
           {Object.entries(colors.dark).map(([name, value]) => (
-            <Swatch key={name} name={name} value={value} />
+            <Swatch key={name} name={name} value={value} source={colorSources.dark[name as keyof typeof colorSources.dark]} />
           ))}
         </div>
       </Section>
@@ -58,6 +67,9 @@ export const AllTokens: Story = {
               <div className="h-16 w-full rounded-card border" style={{ background: value, borderColor: colors.light.border }} />
               <div>
                 <p className="font-mono text-[11px]" style={{ color: colors.light.foreground }}>{name}</p>
+                <p className="font-mono text-[10px]" style={{ color: colors.light.primary }}>
+                  → {colorSources.light[name as keyof typeof colorSources.light]}
+                </p>
                 <p className="font-mono text-[10px]" style={{ color: colors.light.foregroundMuted }}>{value}</p>
               </div>
             </div>

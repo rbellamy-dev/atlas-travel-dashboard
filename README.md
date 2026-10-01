@@ -6,7 +6,7 @@ A travel-operations dashboard built entirely from its own token-driven component
 
 One repo, one set of tokens, two outputs: the component library (documented in Storybook) and the dashboard that consumes it.
 
-`product.md` is the brief and `design.md` is the design spec with the reasoning behind each value. Token values live in one file, `src/tokens.json`; `npm run tokens` generates `src/tokens.css` (for the app and Storybook) and `src/tokens.ts` (for Storybook's own UI theme and the Design Tokens page) from it. `dev`, `build`, `storybook` and `build-storybook` all regenerate on start. If you edit `tokens.json` while a dev server is running, run `npm run tokens` to pick up the change.
+`product.md` is the brief and `design.md` is the design spec with the reasoning behind each value. Token values live in one file, `src/tokens.json` — colors are a `palette` of primitives (`cyan-400`) plus semantic `colors` (`primary`) that reference it; `npm run tokens` generates `src/primitives.css` and `src/semantics.css` (the two layers, for the app and Storybook) and `src/tokens.ts` (for Storybook's own UI theme and the Design Tokens page) from it. `dev`, `build`, `storybook` and `build-storybook` all regenerate on start. If you edit `tokens.json` while a dev server is running, run `npm run tokens` to pick up the change.
 
 ## Run it
 
@@ -25,7 +25,7 @@ npm run storybook      # the component library docs — http://localhost:6006
 | `npm run preview` | Preview the production build |
 | `npm run storybook` | Storybook dev server |
 | `npm run build-storybook` | Production Storybook build → `storybook-static/` |
-| `npm run tokens` | Regenerate `tokens.css` + `tokens.ts` from `tokens.json` |
+| `npm run tokens` | Regenerate `primitives.css`, `semantics.css` + `tokens.ts` from `tokens.json` |
 | `npm run check:tokens` | Fail if the generated files are stale or were hand-edited |
 
 ## Structure
@@ -34,15 +34,18 @@ npm run storybook      # the component library docs — http://localhost:6006
 src/
 ├── App.tsx                # renders the assembled dashboard
 ├── tokens.json             # design tokens — the one file to edit
-├── tokens.css              # generated: @theme + :root token blocks
+├── primitives.css          # generated: layer 1 — palette + motion
+├── semantics.css           # generated: layer 2 — @theme roles + themed colors
 ├── tokens.ts               # generated: same tokens as JS, for Storybook
-├── index.css               # imports tokens.css + base styles and motion layer
+├── index.css               # imports the token CSS + base styles and motion layer
 ├── components/
 │   ├── ui/                 # shadcn primitives (Button, Card, Badge, Input, Tabs, Progress, Skeleton)
 │   └── travel/              # domain components (MetricCard, TripCard, BudgetRing, IconContainer, EmptyState, PanelError)
 ├── dashboard/                # the app layer — types, mock data, hooks, panels
 │   └── panels/               # TopBar, OpsBoard, StatRow, TripFeed, GoalPanel, PanelBoundary
-└── stories/                  # Storybook stories, one per component + Foundation/Design Tokens + Introduction
+└── stories/                  # Storybook stories, one per component (sidebar: Components/UI | Travel | Recipes)
+    ├── pages/                # Foundation/Overview, Primitives, Semantics + Components/Overview
+    └── docs/                 # shared layout for those pages (PageHeader, Section, Note, LinkCard)
 ```
 
 Components are presentational (props in, no fetching); all data lives in `src/dashboard/`. Swap `dashboard/hooks.ts` for real API calls later — nothing else needs to change.

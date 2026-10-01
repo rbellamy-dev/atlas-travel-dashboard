@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { MetricCard } from '@/components/travel/metric-card'
 
 const meta: Meta<typeof MetricCard> = {
-  title: 'Travel/MetricCard',
+  title: 'Components/Travel/MetricCard',
   component: MetricCard,
   tags: ['autodocs'],
   parameters: { layout: 'centered' },

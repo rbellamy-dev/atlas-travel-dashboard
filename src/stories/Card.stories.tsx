@@ -3,7 +3,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from '@/components/ui/button'
 
 const meta: Meta<typeof Card> = {
-  title: 'UI/Card',
+  title: 'Components/UI/Card',
   component: Card,
   tags: ['autodocs'],
   parameters: { layout: 'centered' },
