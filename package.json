@@ -8,7 +8,7 @@
     "check:tokens": "node scripts/build-tokens.mjs --check",
     "predev": "npm run tokens",
     "dev": "vite",
-    "build": "npm run tokens && tsc -b && vite build",
+    "build": "npm run check:tokens && tsc -b && vite build",
     "preview": "vite preview",
     "prestorybook": "npm run tokens",
     "storybook": "storybook dev -p 6006",

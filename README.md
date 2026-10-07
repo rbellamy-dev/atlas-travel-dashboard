@@ -1,12 +1,27 @@
 # Atlas — Travel Dashboard
 
-A travel-operations dashboard built entirely from its own token-driven component library. Flight-ops-dark aesthetic, dual-theme (dark/light), built with Vite + React 19 + Tailwind v4 + shadcn/ui (new-york) + Storybook 8.
+A travel-operations dashboard and the component library it's built from: one repo, one set of tokens, two outputs. Dark and light themes, built with Vite + React 19 + Tailwind v4 + shadcn/ui (new-york) + Storybook 8.
 
 **Live:** [dashboard](https://atlas-travel-dashboard.vercel.app/) · [Storybook](https://atlas-travel-storybook.vercel.app/)
 
-One repo, one set of tokens, two outputs: the component library (documented in Storybook) and the dashboard that consumes it.
+| Dark | Light |
+|---|---|
+| ![Atlas dashboard in dark mode: an in-transit Tokyo trip, KPI tiles, trip list and budget ring](docs/dashboard-dark.png) | ![The same dashboard in light mode](docs/dashboard-light.png) |
 
-`product.md` is the brief and `design.md` is the design spec with the reasoning behind each value. Token values live in one file, `src/tokens.json` — colors are a `palette` of primitives (`cyan-400`) plus semantic `colors` (`primary`) that reference it; `npm run tokens` generates `src/primitives.css` and `src/semantics.css` (the two layers, for the app and Storybook) and `src/tokens.ts` (for Storybook's own UI theme and the Foundation pages) from it. `dev`, `build`, `storybook` and `build-storybook` all regenerate on start. If you edit `tokens.json` while a dev server is running, run `npm run tokens` to pick up the change.
+## Key decisions
+
+- **Two token layers, validated.** Semantic colors (`primary`) must point at a primitive (`cyan-400`). The generator rejects raw hex, unknown references, a missing light value, or off-scale spacing.
+- **The build enforces the tokens.** `npm run build` fails if a generated file is stale or hand-edited, so drift can't reach production.
+- **Accessibility lives in the tokens.** Every status pairs color with an icon, and tint strengths were set so badge text clears WCAG AA in both themes.
+- **Every panel handles its states.** Loading, error with retry, and empty where it applies. Each panel has its own error boundary, so one failure doesn't take down the page.
+
+## Tokens
+
+- **Edit one file:** `src/tokens.json`. `npm run tokens` generates `primitives.css` and `semantics.css` (for the app and Storybook) and `tokens.ts` (for Storybook's own UI).
+- **`dev` and `storybook` regenerate on start.** If a dev server is already running, run `npm run tokens` to pick up changes.
+- **Commit the generated files** with your `tokens.json` change, since `build` checks them instead of regenerating.
+
+`product.md` is the brief. `design.md` is the design spec, with the reasoning behind each value.
 
 ## Run it
 
@@ -21,7 +36,7 @@ npm run storybook      # the component library docs — http://localhost:6006
 | Script | What it does |
 |---|---|
 | `npm run dev` | Vite dev server for the dashboard app |
-| `npm run build` | Typecheck + production build → `dist/` |
+| `npm run build` | Token check + typecheck + production build → `dist/` |
 | `npm run preview` | Preview the production build |
 | `npm run storybook` | Storybook dev server |
 | `npm run build-storybook` | Production Storybook build → `storybook-static/` |
