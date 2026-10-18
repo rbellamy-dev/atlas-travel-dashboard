@@ -91,10 +91,12 @@ export const TripCard = React.forwardRef<HTMLDivElement, TripCardProps>(
     const accent = status === 'upcoming' ? 'violet' : status === 'delayed' ? 'amber' : 'cyan'
 
     return (
+      // min-w-0: inside any grid or flex container the card may shrink below its content,
+      // so a long destination truncates instead of pushing the card past its column.
       <div
         ref={ref}
         className={cn(
-          'group rounded-card border border-border bg-card p-4 transition-all duration-[var(--dur-base)] hover:-translate-y-0.5 hover:border-primary/30',
+          'group min-w-0 rounded-card border border-border bg-card p-4 transition-all duration-[var(--dur-base)] hover:-translate-y-0.5 hover:border-primary/30',
           className,
         )}
         {...props}
