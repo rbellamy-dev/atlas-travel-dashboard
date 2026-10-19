@@ -10,6 +10,15 @@
     border-color: var(--color-border);
     outline-color: var(--color-ring);
   }
+
+  /* Tailwind v4 dropped the pointer from buttons: anything you can click shows one again.
+     In @layer base so a component's own cursor-* utility still wins. */
+  button:not(:disabled),
+  [role='button']:not([aria-disabled='true']),
+  [role='tab']:not([aria-disabled='true']),
+  summary {
+    cursor: pointer;
+  }
 }
 
 html {
