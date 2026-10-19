@@ -5,8 +5,9 @@
  * `src/tokens.json` is the single source of truth. This writes it out as the files
  * the project needs.
  *
- * Colors are two layers: `palette` (primitives, e.g. cyan-400) and `colors` (semantic,
- * e.g. primary), where every semantic color references a palette key as "{cyan400}".
+ * Colors are two layers: `palette` (primitives, e.g. teal-300) and `colors` (semantic,
+ * e.g. primary), where every semantic color references a palette key as "{teal300}".
+ * Shadows take their colour from the palette too, inline: "0 2px 8px {teal300 @ 12%}".
  * The CSS is written as the same two layers, both imported by index.css (app + Storybook preview):
  *
  *   src/primitives.css — palette + motion, plain :root vars
@@ -47,13 +48,13 @@ const noteOf = (t) => (typeof t === 'object' && t !== null ? t.note : undefined)
 /** Single-quoted TS string, unless the value itself holds single quotes (font stacks). */
 const tsString = (v) => (v.includes("'") ? JSON.stringify(v) : `'${v}'`)
 
-/** Palette key -> CSS var name: `ink950` -> `ink-950`, `amber750` -> `amber-750`. */
+/** Palette key -> CSS var name: `teal950` -> `teal-950`, `coral400` -> `coral-400`. */
 const paletteName = (k) => kebab(k).replace(/([a-z])(\d)/g, '$1-$2')
 
-/** `{ink950}` -> `ink950`, or null if the string isn't a reference. */
+/** `{teal950}` -> `teal950`, or null if the string isn't a reference. */
 const refKey = (v) => (typeof v === 'string' && /^\{[A-Za-z0-9]+\}$/.test(v) ? v.slice(1, -1) : null)
 
-/** `#22d3ee` + 0.1 -> `rgba(34, 211, 238, 0.1)` */
+/** `#3ddfd4` + 0.1 -> `rgba(61, 223, 212, 0.1)` */
 function hexToRgba(hex, alpha) {
   const n = parseInt(hex.slice(1), 16)
   return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${alpha})`
@@ -88,7 +89,7 @@ const baseHex = (t) => valueOf(palette[refKey(valueOf(t))])
 /** Literal value of a semantic color — hex, or rgba for a tint. What the TS export and Storybook see. */
 const resolveColor = (t) => (t.alpha != null ? hexToRgba(baseHex(t), t.alpha) : baseHex(t))
 
-/** Human-readable source, e.g. `cyan-400` or `cyan-400 @ 10%`. */
+/** Human-readable source, e.g. `teal-300` or `teal-300 @ 12%`. */
 const sourceOf = (t) => {
   const name = paletteName(refKey(valueOf(t)))
   return t.alpha != null ? `${name} @ ${Math.round(t.alpha * 100)}%` : name
@@ -118,6 +119,27 @@ for (const [key, px] of entries(spacing)) {
   if (px % 4 !== 0) fail(`tokens.json: spacing.${key} = ${px} is not a multiple of 4 — Tailwind's default scale can't express it`)
 }
 
+// Shadows reference the palette like semantic colors do, so a glow follows its colour: a raw
+// rgba() here would keep the old hue after a palette change.
+const SHADOW_REF = /\{([A-Za-z0-9]+)(?:\s*@\s*(\d+(?:\.\d+)?)%)?\}/g
+const resolvedShadows = Object.fromEntries(
+  entries(shadows).map(([k, t]) => {
+    const raw = valueOf(t)
+    if (/#[0-9a-f]{3,8}\b|\b(rgba?|hsla?|oklch|oklab)\(/i.test(raw)) {
+      fail(`tokens.json: shadows.${k} must take its colour from the palette as "{key @ n%}", got "${raw}"`)
+    }
+    let refs = 0
+    const value = raw.replace(SHADOW_REF, (_, key, pct) => {
+      if (!(key in palette)) fail(`tokens.json: shadows.${k} points at unknown palette key "${key}"`)
+      refs++
+      const hex = valueOf(palette[key])
+      return pct == null ? hex : hexToRgba(hex, Number(pct) / 100)
+    })
+    if (!refs) fail(`tokens.json: shadows.${k} has no palette colour — write it as e.g. "0 2px 8px {teal300 @ 12%}"`)
+    return [k, value]
+  }),
+)
+
 /* ── CSS ──────────────────────────────────────────────────────────────── */
 
 function cssDecl(name, token) {
@@ -131,7 +153,7 @@ function renderSemanticsCss() {
     '',
     ...entries(radius).map(([k, v]) => cssDecl(`radius-${kebab(k)}`, v)),
     '',
-    ...entries(shadows).map(([k, v]) => cssDecl(`shadow-${kebab(k)}`, v)),
+    ...entries(resolvedShadows).map(([k, v]) => cssDecl(`shadow-${kebab(k)}`, v)),
     '',
     '  /* Type scale — size + line-height + tracking + weight per role. */',
     ...entries(typeScale).flatMap(([k, t], i) => {
@@ -270,7 +292,7 @@ ${tsObject(radius)}
 } as const
 
 export const shadows = {
-${tsObject(shadows)}
+${tsObject(resolvedShadows)}
 } as const
 
 export const spacing = {

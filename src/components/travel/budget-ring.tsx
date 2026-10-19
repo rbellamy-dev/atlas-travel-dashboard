@@ -17,7 +17,7 @@ const RADIUS = 46
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS
 
 export const BudgetRing = React.forwardRef<HTMLDivElement, BudgetRingProps>(
-  ({ className, label, current, target, unit, accent = 'cyan', size = 148, loading, ...props }, ref) => {
+  ({ className, label, current, target, unit, accent = 'primary', size = 148, loading, ...props }, ref) => {
     if (loading) {
       return (
         <div

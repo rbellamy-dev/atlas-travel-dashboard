@@ -65,11 +65,11 @@ export function GroupTitle({ title, description }: { title: string; description?
   )
 }
 
-/** Callout for guidance — the scaffold's "Note for students", in Atlas amber. */
+/** Callout for guidance — the scaffold's "Note for students", in the Atlas warning colour. */
 export function Note({ title = 'Note', children }: { title?: string; children: ReactNode }) {
   return (
-    <aside className="rounded-card border border-amber/30 bg-amber-tint p-4 text-body-sm text-foreground-body">
-      <p className="mb-1 font-medium text-amber">{title}</p>
+    <aside className="rounded-card border border-warning/30 bg-warning-tint p-4 text-body-sm text-foreground-body">
+      <p className="mb-1 font-medium text-warning">{title}</p>
       <div>{children}</div>
     </aside>
   )

@@ -14,16 +14,16 @@ type Story = StoryObj
 const kebab = (s: string) => s.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
 
 const hueNotes: Record<string, string> = {
-  ink: 'cool blue-grey, from dark surfaces to light text. White sits here too.',
-  cyan: 'brand',
-  amber: 'warnings and delayed trips',
-  violet: 'upcoming trips and secondary data',
-  red: 'destructive and errors',
+  gray: 'neutral text in both themes, so colour only appears where it means something. White and black (never pure) sit here too.',
+  slate: 'light-mode surfaces, with a trace of teal.',
+  teal: 'dark-mode surfaces, and the brand accent: 300 on dark, 650 on light.',
+  blue: 'upcoming trips.',
+  coral: 'the only warm hue: delayed trips and errors, so a problem is the first thing you see.',
 }
 
-/** Group palette keys by hue: 'ink-950' -> 'ink'. White belongs with the inks. */
+/** Group palette keys by hue: 'teal-950' -> 'teal'. White and black belong with the grays. */
 const paletteGroups = Object.entries(palette).reduce<Record<string, [string, string][]>>((groups, [name, value]) => {
-  const hue = name === 'white' ? 'ink' : name.replace(/-\d+$/, '')
+  const hue = name === 'white' || name === 'black' ? 'gray' : name.replace(/-\d+$/, '')
   ;(groups[hue] ??= []).push([name, value])
   return groups
 }, {})

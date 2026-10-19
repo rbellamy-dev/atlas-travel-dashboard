@@ -86,9 +86,9 @@ export function OpsBoard() {
                 className="flex items-center gap-1.5 text-xs text-foreground-body animate-badge-pop"
                 style={{ animationDelay: '420ms' }}
               >
-                <AlertTriangle className="size-3.5 text-amber" aria-hidden="true" />
+                <AlertTriangle className="size-3.5 text-warning" aria-hidden="true" />
                 {delayed.destination}
-                <span className="font-mono text-[11px] font-medium text-amber">Delayed</span>
+                <span className="font-mono text-[11px] font-medium text-warning">Delayed</span>
                 {delayed.flightCode && (
                   <span className="font-mono text-[11px] text-foreground-muted">
                     {delayed.flightCode}
@@ -101,7 +101,7 @@ export function OpsBoard() {
                 className="flex items-center gap-1.5 text-xs text-foreground-body animate-badge-pop"
                 style={{ animationDelay: '500ms' }}
               >
-                <CalendarClock className="size-3.5 text-violet" aria-hidden="true" />
+                <CalendarClock className="size-3.5 text-info" aria-hidden="true" />
                 Next up: {nextUp.destination}
                 <span className="font-tabular font-mono text-[11px] text-foreground-muted">
                   {nextUp.startDate}

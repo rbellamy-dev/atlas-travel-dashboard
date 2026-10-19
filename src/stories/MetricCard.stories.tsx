@@ -8,7 +8,7 @@ const meta: Meta<typeof MetricCard> = {
   parameters: { layout: 'centered' },
   argTypes: {
     trend: { control: 'select', options: ['up', 'down', 'neutral', undefined] },
-    accent: { control: 'select', options: [false, true, 'amber', 'violet'] },
+    accent: { control: 'select', options: [false, true, 'warning', 'info'] },
   },
 }
 export default meta
@@ -27,9 +27,9 @@ export const Loading: Story = {
 export const AccentRoles: Story = {
   render: () => (
     <div className="grid grid-cols-3 gap-3">
-      <MetricCard className="w-[160px]" label="On-Time" value={92} unit="%" accent="cyan" />
-      <MetricCard className="w-[160px]" label="Delayed" value={1} accent="amber" />
-      <MetricCard className="w-[160px]" label="Upcoming" value={2} accent="violet" />
+      <MetricCard className="w-[160px]" label="On-Time" value={92} unit="%" accent="primary" />
+      <MetricCard className="w-[160px]" label="Delayed" value={1} accent="warning" />
+      <MetricCard className="w-[160px]" label="Upcoming" value={2} accent="info" />
     </div>
   ),
 }

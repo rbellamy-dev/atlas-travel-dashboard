@@ -18,7 +18,7 @@ const colorGroups: { title: string; description: string; keys: string[] }[] = [
   { title: 'Surfaces', description: 'page, cards and the lines between them', keys: ['background', 'card', 'cardRaised', 'border', 'input'] },
   { title: 'Text', description: 'strongest to quietest', keys: ['foregroundStrong', 'foreground', 'foregroundBody', 'foregroundMuted'] },
   { title: 'Brand', description: 'primary actions, focus and highlights', keys: ['primary', 'primaryForeground', 'primaryTint', 'ring'] },
-  { title: 'Status', description: 'trip states and errors, each with a tint for badges', keys: ['amber', 'amberTint', 'violet', 'violetTint', 'destructive'] },
+  { title: 'Status', description: 'trip states and errors, each with a tint for badges', keys: ['warning', 'warningTint', 'info', 'infoTint', 'destructive'] },
 ]
 {
   const listed = colorGroups.flatMap((g) => g.keys)
@@ -65,7 +65,7 @@ export const Semantics: Story = {
 
       <Section title="How a name travels" description="A colour starts as a primitive, gets a semantic name that says what it's for, and becomes Tailwind classes that components use.">
         <div className="flex flex-wrap items-center gap-2 font-mono text-body-sm">
-          <span className="rounded-chip border border-border bg-card px-2.5 py-1.5 text-foreground-muted">--cyan-400</span>
+          <span className="rounded-chip border border-border bg-card px-2.5 py-1.5 text-foreground-muted">--teal-300</span>
           <span className="text-foreground-muted">→</span>
           <span className="rounded-chip border border-primary/40 bg-primary-tint px-2.5 py-1.5 text-primary">--primary</span>
           <span className="text-foreground-muted">→</span>
@@ -165,7 +165,7 @@ export const Semantics: Story = {
         </div>
       </Section>
 
-      <Section title="Shadow" description="Cyan glows for primary actions, rather than grey elevation.">
+      <Section title="Shadow" description="A soft teal glow for primary actions, rather than grey elevation.">
         <div className="grid gap-4 sm:grid-cols-2">
           {Object.entries(shadows).map(([role, value]) => (
             <div key={role} className="flex items-center gap-5 rounded-card border border-border bg-card p-5">
@@ -183,7 +183,7 @@ export const Semantics: Story = {
 
       <Note title="Rule of thumb">
         Components use names from this page, like <Code>bg-card</Code>, <Code>text-foreground-muted</Code> and{' '}
-        <Code>rounded-card</Code>. They never use <Code>--cyan-400</Code> or a hex value. If a component needs something that
+        <Code>rounded-card</Code>. They never use <Code>--teal-300</Code> or a hex value. If a component needs something that
         isn&apos;t here, add a role in <Code>tokens.json</Code> first.
       </Note>
     </DocPage>

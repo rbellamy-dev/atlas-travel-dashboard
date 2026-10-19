@@ -5,9 +5,9 @@ import type { Accent } from './icon-container'
 import { TrendingUp, TrendingDown, Minus } from 'lucide-react'
 
 const accentText: Record<Accent, string> = {
-  cyan: 'text-primary',
-  amber: 'text-amber',
-  violet: 'text-violet',
+  primary: 'text-primary',
+  warning: 'text-warning',
+  info: 'text-info',
 }
 
 function usePrefersReducedMotion() {
@@ -84,7 +84,7 @@ export const MetricCard = React.forwardRef<HTMLDivElement, MetricCardProps>(
       )
     }
 
-    const accentColor = accent === true ? 'cyan' : accent || null
+    const accentColor = accent === true ? 'primary' : accent || null
     const valueColor = accentColor ? accentText[accentColor] : 'text-foreground-strong'
     const TrendIcon = trend === 'up' ? TrendingUp : trend === 'down' ? TrendingDown : Minus
     const trendColor =

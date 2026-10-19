@@ -121,12 +121,13 @@ h4 {
    frame). The blur is now constant → the filter surface is cached and only the
    opacity composites. Same glow, a fraction of the per-frame paint cost. */
 @keyframes glowPulse {
+  /* A quiet breath, not a neon pulse: the halo stays a hint behind the arc. */
   0%,
   100% {
-    opacity: 0.35;
+    opacity: 0.15;
   }
   50% {
-    opacity: 0.95;
+    opacity: 0.35;
   }
 }
 .ring-glow-arc {
@@ -157,7 +158,7 @@ h4 {
   }
   .ring-glow-arc {
     animation: none;
-    opacity: 0.6;
+    opacity: 0.25;
   }
 }
 

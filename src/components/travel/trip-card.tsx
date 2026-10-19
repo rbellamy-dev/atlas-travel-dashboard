@@ -14,7 +14,7 @@ const statusMeta: Record<
 > = {
   upcoming: {
     label: 'Upcoming',
-    badgeClass: 'bg-violet-tint text-violet border-transparent',
+    badgeClass: 'bg-info-tint text-info border-transparent',
     icon: CalendarClock,
   },
   'in-transit': {
@@ -24,7 +24,7 @@ const statusMeta: Record<
   },
   delayed: {
     label: 'Delayed',
-    badgeClass: 'bg-amber-tint text-amber border-transparent',
+    badgeClass: 'bg-warning-tint text-warning border-transparent',
     icon: AlertTriangle,
   },
   completed: {
@@ -88,7 +88,7 @@ export const TripCard = React.forwardRef<HTMLDivElement, TripCardProps>(
     const meta = statusMeta[status]
     const StatusIcon = meta.icon
     const pct = Math.min(100, Math.max(0, Math.round((budgetUsed / budgetTotal) * 100)))
-    const accent = status === 'upcoming' ? 'violet' : status === 'delayed' ? 'amber' : 'cyan'
+    const accent = status === 'upcoming' ? 'info' : status === 'delayed' ? 'warning' : 'primary'
 
     return (
       // min-w-0: inside any grid or flex container the card may shrink below its content,

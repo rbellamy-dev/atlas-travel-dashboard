@@ -14,13 +14,13 @@ const layers = [
     step: '1',
     title: 'Primitives',
     body: 'Raw, fixed values named by what they are. The same in both themes.',
-    example: '--cyan-400: #22d3ee',
+    example: '--teal-300: #3ddfd4',
   },
   {
     step: '2',
     title: 'Semantics',
     body: 'Values named by their job. Each points at a primitive, with a dark and a light value.',
-    example: '--primary: var(--cyan-400)',
+    example: '--primary: var(--teal-300)',
   },
   {
     step: '3',

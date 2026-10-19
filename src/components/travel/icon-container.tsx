@@ -1,20 +1,20 @@
 import * as React from 'react'
 import { cn } from '@/lib/utils'
 
-export type Accent = 'cyan' | 'amber' | 'violet'
+export type Accent = 'primary' | 'warning' | 'info'
 
 // CSS var references, not literal hex — resolve live against the current theme
 // (each of these is redefined under :root[data-theme='light'] in semantics.css).
 export const accentVar: Record<Accent, string> = {
-  cyan: 'var(--primary)',
-  amber: 'var(--amber)',
-  violet: 'var(--violet)',
+  primary: 'var(--primary)',
+  warning: 'var(--warning)',
+  info: 'var(--info)',
 }
 
 const containerVariants: Record<Accent, string> = {
-  cyan: 'bg-primary-tint [&_svg]:stroke-primary',
-  amber: 'bg-amber-tint [&_svg]:stroke-amber',
-  violet: 'bg-violet-tint [&_svg]:stroke-violet',
+  primary: 'bg-primary-tint [&_svg]:stroke-primary',
+  warning: 'bg-warning-tint [&_svg]:stroke-warning',
+  info: 'bg-info-tint [&_svg]:stroke-info',
 }
 
 export interface IconContainerProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -29,7 +29,7 @@ const sizeVariants: Record<NonNullable<IconContainerProps['size']>, string> = {
 }
 
 export const IconContainer = React.forwardRef<HTMLDivElement, IconContainerProps>(
-  ({ className, accent = 'cyan', size = 'md', children, ...props }, ref) => (
+  ({ className, accent = 'primary', size = 'md', children, ...props }, ref) => (
     <div
       ref={ref}
       className={cn(

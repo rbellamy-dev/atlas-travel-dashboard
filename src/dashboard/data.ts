@@ -80,7 +80,7 @@ export const mockMetrics: Metric[] = [
     value: 4,
     trend: 'up',
     trendLabel: '+1',
-    accent: 'cyan',
+    accent: 'primary',
   },
   {
     id: 'ytd-spend',
@@ -116,7 +116,7 @@ export const mockGoal: TravelGoal = {
   current: 11580,
   target: 18000,
   unit: 'USD',
-  accent: 'cyan',
+  accent: 'primary',
 }
 
 export const nextDeparture = {

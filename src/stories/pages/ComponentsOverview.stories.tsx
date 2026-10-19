@@ -31,7 +31,7 @@ const groups = [
     items: [
       { name: 'BudgetRing', description: 'Ring showing current against a target', to: 'Components/Travel/BudgetRing' },
       { name: 'EmptyState', description: 'What a panel shows when there is no data, with an optional action', to: 'Components/Travel/EmptyState' },
-      { name: 'IconContainer', description: 'Tinted icon tile in cyan, amber or violet', to: 'Components/Travel/IconContainer' },
+      { name: 'IconContainer', description: 'Tinted icon tile in the primary, warning or info colour', to: 'Components/Travel/IconContainer' },
       { name: 'MetricCard', description: 'Headline number with label, unit and trend', to: 'Components/Travel/MetricCard' },
       { name: 'PanelError', description: 'Error state for a dashboard panel', to: 'Components/Travel/PanelError' },
       { name: 'TripCard', description: 'Trip summary with an upcoming / in-transit / delayed / completed badge', to: 'Components/Travel/TripCard' },
@@ -61,7 +61,7 @@ export const Overview: Story = {
           <div className="rounded-card border border-border bg-card p-5">
             <p className="font-medium text-foreground-strong">Through Tailwind utilities</p>
             <p className="mt-2">
-              A primary button is <Code>bg-primary text-primary-foreground shadow-cyan</Code>; a card is{' '}
+              A primary button is <Code>bg-primary text-primary-foreground shadow-glow</Code>; a card is{' '}
               <Code>bg-card rounded-card border-border</Code>. The mapping lives in the component&apos;s class names —
               not in a separate tokens file.
             </p>
@@ -69,7 +69,7 @@ export const Overview: Story = {
           <div className="rounded-card border border-border bg-card p-5">
             <p className="font-medium text-foreground-strong">Never primitives or hex</p>
             <p className="mt-2">
-              No <Code>--cyan-400</Code>, no <Code>#22d3ee</Code>, no <Code>bg-cyan-400</Code>. That&apos;s what lets the
+              No <Code>--teal-300</Code>, no <Code>#3ddfd4</Code>, no <Code>bg-teal-300</Code>. That&apos;s what lets the
               light theme, and any future palette change, work without touching component code.
             </p>
           </div>

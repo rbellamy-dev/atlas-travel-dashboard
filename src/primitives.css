@@ -6,32 +6,28 @@
 :root {
   /* Palette */
   --white: #ffffff;
-  --ink-25: #f8fbfd;
-  --ink-50: #f4f7fa;
-  --ink-75: #eef4f9;
-  --ink-100: #eef2f6;
-  --ink-200: #d7dee6;
-  --ink-300: #b8c4cf;
-  --ink-500: #828e9a;
-  --ink-600: #5f6a78;
-  --ink-700: #414c59;
-  --ink-800: #263140;
-  --ink-850: #1a2129;
-  --ink-900: #12181f;
-  --ink-925: #0d1420;
-  --ink-950: #0a0e14;
-  --ink-975: #060a10;
-  --cyan-300: #67e8f9;
-  --cyan-400: #22d3ee;
-  --cyan-600: #0891b2;
-  --cyan-700: #0e7490;
-  --amber-400: #fbbf24;
-  --amber-700: #b45309;
-  --amber-750: #a94d08; /* off-scale: amber-700 darkened to clear WCAG AA (4.5:1) as badge text on amber-tint */
-  --violet-400: #a78bfa;
-  --violet-600: #7c3aed;
-  --red-400: #f87171;
-  --red-600: #dc2626;
+  --slate-25: #f5f7f8;
+  --slate-50: #eef1f3;
+  --slate-200: #d8e0e4;
+  --gray-25: #f8f9fa;
+  --gray-200: #c9ced1;
+  --gray-400: #9aa1a6;
+  --gray-600: #555c61;
+  --gray-700: #3a3f42;
+  --gray-950: #0f1214;
+  --black: #08090a; /* never pure black */
+  --teal-300: #3ddfd4; /* teal brightened to glow on teal-950; the dark-mode accent */
+  --teal-600: #028090; /* source palette */
+  --teal-650: #0c6a7c; /* teal-600 deepened so primary badge text clears WCAG AA (4.5:1) on its tint, even over card-raised */
+  --teal-700: #114b5f; /* source palette */
+  --teal-800: #2c5e6e;
+  --teal-850: #072d3a;
+  --teal-900: #041f29;
+  --teal-950: #011017;
+  --blue-300: #8cbaf7; /* blue-500 brightened to read on teal-950 */
+  --blue-500: #456990; /* source palette */
+  --coral-400: #f45b69; /* source palette; the only warm hue, so a delay is the first thing you see */
+  --coral-700: #a33a44; /* coral-400 deepened for text on white */
 
   /* Motion */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);

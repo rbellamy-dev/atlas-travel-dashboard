@@ -22,10 +22,10 @@ Standard level — KPI row + main trip feed + a goal/progress panel, scaled up s
 **Domain components** (`src/components/travel/`):
 | Component | Backed by | Accent usage |
 |---|---|---|
-| `IconContainer` | — | owns the shared `Accent` union: `cyan` (primary) \| `amber` \| `violet` |
+| `IconContainer` | — | owns the shared `Accent` union: `primary` \| `warning` \| `info` |
 | `MetricCard` | skeleton | numeral tinted by accent role, trend arrow |
-| `TripCard` | badge, progress, skeleton | status badge + budget bar (`upcoming`→violet, `in-transit`→cyan, `delayed`→amber, `completed`→muted) |
-| `BudgetRing` | skeleton | SVG progress ring, accent-driven glow (`cyan` default) |
+| `TripCard` | badge, progress, skeleton | status badge + budget bar (`upcoming`→info, `in-transit`→primary, `delayed`→warning, `completed`→muted) |
+| `BudgetRing` | skeleton | SVG progress ring, accent-driven glow (`primary` default) |
 | `EmptyState` | button | shared across all empty collections |
 | `PanelError` | button | shared inline error + retry |
 

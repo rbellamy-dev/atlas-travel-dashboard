@@ -8,7 +8,7 @@ const meta: Meta<typeof IconContainer> = {
   tags: ['autodocs'],
   parameters: { layout: 'centered' },
   argTypes: {
-    accent: { control: 'select', options: ['cyan', 'amber', 'violet'] },
+    accent: { control: 'select', options: ['primary', 'warning', 'info'] },
     size: { control: 'select', options: ['sm', 'md', 'lg'] },
   },
 }
@@ -16,7 +16,7 @@ export default meta
 type Story = StoryObj<typeof IconContainer>
 
 export const Default: Story = {
-  args: { accent: 'cyan', size: 'md' },
+  args: { accent: 'primary', size: 'md' },
   render: (args) => (
     <IconContainer {...args}>
       <Plane />
@@ -28,19 +28,19 @@ export const AccentRoles: Story = {
   render: () => (
     <div className="flex items-center gap-4">
       <div className="flex flex-col items-center gap-2">
-        <IconContainer accent="cyan">
+        <IconContainer accent="primary">
           <Plane />
         </IconContainer>
         <p className="eyebrow">In-transit</p>
       </div>
       <div className="flex flex-col items-center gap-2">
-        <IconContainer accent="amber">
+        <IconContainer accent="warning">
           <AlertTriangle />
         </IconContainer>
         <p className="eyebrow">Delayed</p>
       </div>
       <div className="flex flex-col items-center gap-2">
-        <IconContainer accent="violet">
+        <IconContainer accent="info">
           <CalendarClock />
         </IconContainer>
         <p className="eyebrow">Upcoming</p>

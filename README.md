@@ -10,7 +10,7 @@ A travel-operations dashboard and the component library it's built from: one rep
 
 ## Key decisions
 
-- **Two token layers, validated.** Semantic colors (`primary`) must point at a primitive (`cyan-400`). The generator rejects raw hex, unknown references, a missing light value, or off-scale spacing.
+- **Two token layers, validated.** Semantic colors (`primary`) must point at a primitive (`teal-300`). The generator rejects raw hex, unknown references, a missing light value, or off-scale spacing.
 - **The build enforces the tokens.** `npm run build` fails if a generated file is stale or hand-edited, so drift can't reach production.
 - **Accessibility lives in the tokens.** Every status pairs color with an icon, and tint strengths were set so badge text clears WCAG AA in both themes.
 - **Every panel handles its states.** Loading, error with retry, and empty where it applies. Each panel has its own error boundary, so one failure doesn't take down the page.
