@@ -1,5 +1,5 @@
 import { create } from '@storybook/theming'
-import { colors } from '../src/tokens'
+import { colors, palette } from '../src/tokens'
 
 // colors come from src/tokens.ts, generated from src/tokens.json — the same values the app renders
 
@@ -9,7 +9,9 @@ export const brandTheme = create({
   brandUrl: '.',
 
   colorPrimary: colors.dark.primary,
-  colorSecondary: colors.dark.primary,
+  // Fills the selected sidebar item behind white text. The bright dark-mode primary only gives
+  // white 1.6:1 there; teal-650 (light mode's primary) gives 6.2:1 and reads as a calm highlight.
+  colorSecondary: palette['teal-650'],
 
   appBg: colors.dark.background,
   appContentBg: colors.dark.card,
